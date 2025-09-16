@@ -3,13 +3,6 @@ layout: page
 mathjax: true
 permalink: /ASE/Getting_Started/
 ---
-
-# ASE Tutorials
-1. [Introduction to ASE](../)
-2. [Getting Started with DFT Calculations](../Getting_Started/)
-
-____
-
 ## Getting Started with DFT Calculations ##
 
 In the first exercise, we will be studying alkaline oxides and how to determine their lattice constants, followed by surface relaxation of the (100) surface of the alkaline oxides. For Homework 5, everyone will be studying the same system MgO (100). 
@@ -261,4 +254,5 @@ To adsorb an atom onto an oxygen, click on the oxygen you want to adsorb onto (f
 **HW 5:** Report the converged energy of the optimized structure, and plot the density of states (DOS). 
 
 **You must succesfully complete this task before proceeding to the Final Project**
+
 
