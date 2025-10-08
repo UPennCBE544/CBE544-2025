@@ -11,7 +11,7 @@ We will be using the [Atomic Simulation Environment (ASE)](https://wiki.fysik.dt
 ## Assignments ##
 
 ### Homework 5 ###
-* <font color="red"> Due Thursday October 24, 2022 </font>
+* <font color="red"> Due Thursday October 24, 2025 </font>
 * [Problem Description](CBE_5440___HW5.pdf)
  
 ### Final Project ### 
