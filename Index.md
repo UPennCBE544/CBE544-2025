@@ -21,7 +21,7 @@ We will be using the [Atomic Simulation Environment (ASE)](https://wiki.fysik.dt
 ## Guides ##
 ### Getting Started ###
 
-1. [Logging Into the Computing Clusters](https://github.com/UPennCBE544/CBE5440-2024/blob/main/Clusters.md)
+1. [Logging Into the Computing Clusters](Clusters.md)
 2. [Basic UNIX](https://github.com/UPennCBE544/CBE5440-2024/blob/main/UNIX.md)
 3. [Python Tutorial](https://github.com/UPennCBE544/CBE5440-2024/blob/main/Python.md)
 4. [Anvil tutorial](Anvil_Setup.md)
