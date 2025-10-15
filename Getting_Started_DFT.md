@@ -120,7 +120,7 @@ print(a.get_potential_energy())
 <a name='convergence-with-k-points'></a>
 
 #### Convergence with k-Points ####
-Next, you will be modifying the 'relax.py' script with different k-points using linux command 'vim' or 'nano'. As MXene is a 2D material you will only modify the k_{x} and k_{y} and leave the k_{y} as 1. You will study the effect of k-point on the convergence by sampling k-points from 2 to 8. Use the mkdir command on Linux to create folders labeled with the k-point. Run the script in each by submitting a job to an external node as discussed previously. Once you have all the calculations done, make a plot for total energy as a function of k-point.
+Next, you will be modifying the 'relax.py' script with different k-points using linux command 'vim' or 'nano'. As MXene is a 2D material you will only modify the k_{x} and k_{y} and leave the k_{y} as 1. You will study the effect of k-point on the convergence by sampling k-points from 2 to 8. Use the mkdir command on Linux to create subdirectories labeled with the k-point(e.g. 1-k, 2-k, ...). Run the script in each by submitting a job to an external node as discussed previously. Once you have all the calculations done, make a plot for total energy as a function of k-point.
 
 From the plot, and your understanding of concepts in DFT, suggest your pick for the k-points and the rationale behind your choice.
 
@@ -158,6 +158,7 @@ Upon completion, the `dos.dos` file saves the data you need for the plot. You ar
 **HW 5:** Report the converged energy of the optimized structure, and plot the density of states (DOS). 
 
 **You must succesfully complete this task before proceeding to the Final Project**
+
 
 
 
