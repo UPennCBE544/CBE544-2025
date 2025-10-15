@@ -32,9 +32,9 @@ Download and install:
 
 ### Windows
 
-Download and install:
+Download and install following the guidelines of the website:
 
-* [MobaXterm](https://mobaxterm.mobatek.net/download.html)
+* [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 * [Xming](http://sourceforge.net/projects/xming/) (Note: disable automatic installation of PuTTY with Xming. The above installer is a newer version)
 
 
@@ -52,7 +52,7 @@ Follow the instructions below for your system:
 
 ### Mac OSX
 
-Open "Applications-> Utilities -> Terminal" or "Command+Space" to search Terminal using "spotlight search"
+Open "Terminal" or "Command+Space" to search Terminal using "spotlight search"
 
 In a terminal type:
 ```bash
@@ -60,9 +60,9 @@ ssh -i sshkey my-x-anvil-username anvil.rcac.purdue.edu
 ```
 
 ### Windows 
+After the installation of wsl
+Open "Terminal" or "Windows key + R" to search Terminal
 Launch Xming. You will always need to have this open in order to forward graphical windows from the external clusters.
-
-
 
 ### Linux ###
 
@@ -80,7 +80,7 @@ For the **first login** only, run the following command:
 
 ```bash
 cp /home/x-shan4/.bashrc  ~/.bashrc 
-source ~/.bashrc
+source .bashrc
 ```
 
 
@@ -115,7 +115,7 @@ ____
 Once you are logged into the terminal, run:
 
 ```bash
-ase-gui
+ase gui
 ```
 
 and make sure a graphical interface appears. Next, run Python in interactive mode by typing:
