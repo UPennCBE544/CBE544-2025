@@ -35,7 +35,7 @@ Download and install:
 Download and install following the guidelines of the website:
 
 * [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
-* [Xming](http://sourceforge.net/projects/xming/) (Note: disable automatic installation of PuTTY with Xming. The above installer is a newer version)
+* [Xming](http://sourceforge.net/projects/xming/) 
 
 
 ### Linux (Debian-based, e.g. Ubuntu)
