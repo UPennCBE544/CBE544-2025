@@ -5,7 +5,7 @@ permalink: /ASE/Getting_Started/
 ---
 ## Getting Started with DFT Calculations ##
 
-In the first exercise, we will be studying Nb<sub>2C MXene about how to relax it into a optimized structure, and how to adsorb atoms on the high symmetry sites, followed by Density of States(DOS) calculation of the relaxed sturcture. For Homework 5, everyone will be adsorbing the same atom, Cl. 
+In the first exercise, we will be studying Nb<sub>2</sub>C MXene about how to relax it into a optimized structure, and how to adsorb atoms on the high symmetry sites, followed by Density of States(DOS) calculation of the relaxed sturcture. For Homework 5, everyone will be adsorbing the same atom, Cl. 
 
 ## Contents ##
 
@@ -158,6 +158,7 @@ Upon completion, the `dos.dos` file saves the data you need for the plot. You ar
 **HW 5:** Report the converged energy of the optimized structure, and plot the density of states (DOS). 
 
 **You must succesfully complete this task before proceeding to the Final Project**
+
 
 
 
