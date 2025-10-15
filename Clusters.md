@@ -49,8 +49,6 @@ ____
 
 For the [**Anvil**]([https://www.rcac.purdue.edu/knowledge/anvil/access/login]) cluster, make sure to read through the login instructions [here](https://www.rcac.purdue.edu/knowledge/anvil/access/login/sshkeys).
 
-Login with your Anvil username (same as the ACCESS username, check your account [here](https://portal.tacc.utexas.edu/)) and password (you will also be asked for Mulit-factor Authorization).
-
 Follow the instructions below for your system:
 
 ### Mac OSX
@@ -65,13 +63,8 @@ ssh -i sshkey my-x-anvil-username anvil.rcac.purdue.edu
 ### Windows 
 Launch Xming. You will always need to have this open in order to forward graphical windows from the external clusters.
 
-Start PuTTY, and:
-
-* “Session” → “Host Name” `anvil.rcac.purdue.edu` for **Anvil**
-* “Connection” → “SSH” → “X11” check “Enable X11 forwarding”
-* Back in “Session”, you can **save these settings for next time**.
-
-You can start PuTTY several times, if you need several terminal windows; only one instance of Xming needed.
+* [MobaXterm](https://mobaxterm.mobatek.net/download.html)
+* [Xming](http://sourceforge.net/projects/xming/) (Note: disable automatic installation of PuTTY with Xming. The above installer is a newer version)
 
 
 ### Linux ###
