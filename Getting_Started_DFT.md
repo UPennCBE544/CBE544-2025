@@ -5,14 +5,14 @@ permalink: /ASE/Getting_Started/
 ---
 ## Getting Started with DFT Calculations ##
 
-In the first exercise, we will be studying alkaline oxides and how to determine their lattice constants, followed by surface relaxation of the (100) surface of the alkaline oxides. For Homework 5, everyone will be studying the same system MgO (100). 
+In the first exercise, we will be studying Nb_{2}C MXene about how to relax it into a optimized structurem, and how to adsorb atoms on the high symmetry sites, followed by dos calculation of the relaxed sturcture. For Homework 5, everyone will be adsorbing the same atom, Cl. 
 
 ## Contents ##
 
 1. [A Typical ASE Script](#a-typical-ase-script)
-2. [Lattice Constant Determination](#lattice-constant-determination)
+2. [Optimization-relaxation](#optimization)
 3. [Convergence with k-points](#convergence-with-k-points)
-4. [Optimization](#optimization)
+4. [Adsorption](#adsorption)
 
 
 <a name='a-typical-ase-script'></a>
@@ -34,27 +34,23 @@ There are two files that are necessary to run jobs on the Anvil cluster. The fir
 #!/bin/bash
 
 #SBATCH -J jobname   #Job name
-#SBATCH -o out.%j #name of stdout output file
-#SBATCH -e err.%j #name of stderr error file
 #SBATCH -p wholenode  #queue type
 #SBATCH -N 1 #no.of nodes
 #SBATCH --ntasks-per-node 128 #no.of mpi tasks
 #SBATCH -t 96:00:00 #maximum run time (hh:mm:ss)
+#SBATCH -o out.%j #name of stdout output file
+#SBATCH -e err.%j #name of stderr error file
 #SBATCH --mail-user=abc@gmail.com #provide your email for notification
 #SBATCH --mail-type=all #notify when job finishes
+#SBATCH -p wholenode #type of node you are submitting to
 #SBATCH -A eve210010  #Allocation (don't change this)
 
 
 cd $SLURM_SUBMIT_DIR #Move to supply directory
 
-mkdir -p $SCRATCH/$SLURM_JOBID
-cp pw.in $SCRATCH/$SLURM_JOBID
+module load openmpi
 
-cd $SCRATCH/$SLURM_JOBID
-
-mpirun /home/x-syj1022/bin/qe-7.2/bin/pw.x -nd 4   <pw.in> pw.out
-
-cp pw.out $SLURM_SUBMIT_DIR 
+mpirun  /home/x-yamilee/q-e-qe-7.1/bin/pw.x -nd 4 -i scf.in > scf.out
 ```
 
 Let's look at how a typical ASE script for geometry optimization is written. The code below shows an example of a `relax.py` script, which will be used in a later section to perform create the input for a simple MgO relaxation. We import all the relevant ASE modules in for this calculation.
@@ -78,181 +74,90 @@ slab.set_pbc([True,True,True])   #set periodic boundaries in all directions to t
 Then, the Quantum ESPRESSO calculator is set up. All parameters related to the electronic structure calculation are included here. The following example shows typical parameters that we use in the group for calculations involving oxides.
 
 ```python
-calc = espresso(pw=500,             #plane-wave cutoff
-                dw=5000,                    #density cutoff
-                xc='BEEF-vdw',          #exchange-correlation functional
-                kpts=(4,4,1),	    #k-point sampling;
-                nbands=-30,             #30 extra bands besides the bands needed to hold
-                sigma=0.1,
-                opt_algorithm = 'bfgs',
-                fmax = 0.03,
-                nstep=200,
-                nosym=True,
-                convergence= {'energy':1e-5,
-                    'mixing':0.1,
-                    'nmix':10,
-                    'mix':4,
-                    'maxsteps':2000,
-                    'diag':'david'
-                    },  #convergence parameters
-                 dipole={'status':True}, #dipole correction to account for periodicity in z
-                 output = {'avoidio':False,
+calc = espresso(pw=700,             #plane-wave cutoff
+                dw=700*10,          #density cutoff
+                mode = 'relax',     #calculation category
+                xc='BEEF-vdw',      #exchange-correlation functional
+                kpts=(4,4,1),	      #k-point sampling;
+                nbands=-100,        #100 extra bands besides the bands needed to hold
+                nstep=200,          # Maximum number of steps
+               #the valence  electrons
+                sigma=0.1,          #height and the width in Rydberg, of the energy step for reciprocal vectors
+                convergence= {'energy':1e-5, #Convergence threshold energy in Rydberg
+                'mixing':0.1, #a parameter used to control how the new input for an iteration is mixed with the old input to help the calculation converge
+                'nmix':10,    #number of iterations used in mixing scheme
+                'mix':4,      #Broyden mixing scheme for charge density
+                'maxsteps':500, #Maximum number of iteration in one scf calculation
+                'diag':'david'},    #convergence parameters
+                dipole={'status':True}, #dipole correction to account for periodicity in z
+                spinpol=False,  #spin polarization correction
+               
+	       output={'avoidio':False,
                     'removewf':True,
                     'wf_collect':False},
-                 spinpol=False,
-                 parflags='-npool 1',
-                 onlycreatepwinp='pw.in',
-                 outdir='calcdir')   #output directory for Quantum Espresso files
+	       onlycreatepwinp = 'scf.in',
+	       outdir='calcdir')  #output directory for Quantum Espresso
 ```
-
-<a name='lattice-constant-determination'></a>
-
-#### Lattice Constant Determination ####
-
-Find the `lattice.py` script in the `lattice` folder. This script calculates the different energies of the system as a function of the lattice constant. Before you run this job, make sure you read the comments within to understand what it does.
-
-You should check the `traj` file (in this case it is `mgo-bulk.traj`) to make sure you have the correct starting structure that you work with. Also, make sure the `lattice.py` is reading the correct input file. Next, execute `lattice.py` by:
-
-```bash
-python lattice.py
-```
-
-This should generate ten folders: pw0, pw1, ..., pw9, with each folder containing a `pw.in` file and this is the input into the submission script `anvil.sub`. Each `pw` folder contains a structure with different lattice constant. Your job is to run all the calculations and find the lattice constant corresponding to the lowest total energy. You need to submit and run all ten calculations, but don't worry, I have included a shortcut for you. Remember to change the email address in the `lattice.py` file to receive notifications on the job!. The `lattice.py` automatically creates `anvil.sub` scripts and moves them to the `pw` folders. Therefore, the email address you enter in `lattice.py` gets copied into each `anvil.sub` script. You may go to each `pw` folder and run the following command to submit each job:
-
-```bash
-sbatch anvil.sub
-```
-
-Alternatively, the `submit_all.py` script can automatically submit all the `anvil.sub` scripts inside the `pw` folders. You may run the code below:
-
-```python
-python submit_all.py
-```
-
-The lattice constant (in angstrom) can be found in `pw.in` under `CELL_PARAMETERS` in each `pw` folder. For example:
-
-```bash
-CELL_PARAMETERS
-    4.043659800000000d0     0.000000000000000d0     0.000000000000000d0
-    0.000000000000000d0     4.043659800000000d0     0.000000000000000d0
-    0.000000000000000d0     0.000000000000000d0     4.043659800000000d0
-```
-
-Once the job is completed (it should only take a few seconds for this part of homework), you should see the following lines if you type `tail pw.out`:
-
-```bash
-=------------------------------------------------------------------------------=
-   JOB DONE.
-=------------------------------------------------------------------------------=
-```
-
-The output trajectory `pw.out` contains information on the energy of the system with respect to the given lattice constant. To find the total energy, one strategy is to take a look at the `pw.out`. You can take a better look at the convergence criteria by doing `Control` + `W` and search for `Final energy`. You should see something that looks like this:
-```bash
-Total force =     0.000725     Total SCF correction =     0.000086
-     SCF correction compared to forces is large: reduce conv_thr to get better values
-     Energy error            =      8.8E-05 Ry
-     Gradient error          =      5.3E-04 Ry/Bohr
-
-     bfgs converged in  11 scf cycles and  10 bfgs steps
-     (criteria: energy <  1.0E+00 Ry, force <  1.9E-03 Ry/Bohr)
-
-     End of BFGS Geometry Optimization
-
-     Final energy             =    -246.9201988489 Ry
-```
-
-This gives us the final energy in Rydbergs. 1 Ry = 13.605684 eV. If you want the energy in eV directly you can first run the command:
-
-Another strategy is to run the python code as follows:
-
-```python
-from ase.io import read
-a = read('pw.out')
-print(a.get_potential_energy())
-```
-
-Notice that by running the command above returns energy in eV unit!! I recommend you to save the command above into a script, e.g., energy.py, as you will need to run this command multiple times throughout this homework.
-
-**HW 5:** Plot the energy as a function of lattice constant, and report the lattice constant corresponding to the minimized energy.
-
-<a name='convergence-with-k-points'></a>
-
-#### Convergence with k-Points ####
-Next, you will be running the `kptconv.py` script in the `k-points` folder. You will study the effect of k-point on the convergence by sampling k-points from 2 to 8. I have created the folders labeled with the k-point. Look through the script inside these folders to understand what it is doing. Run the script in each by submitting a job to an external node as discussed previously. Once you have all the calculations done, make a plot for total energy as a function of k-point.
-
-From the plot, and your understanding of concepts in DFT, suggest your pick for the k-points and the rationale behind your choice.
-
-**HW 5:** Show the k-point convergence plot, your pick for the k-points, and your rationale.
 
 <a name='optimization'></a>
 
 #### Relaxation ####
-You will then be performing a geometry relaxation on MgO. To proceed with this exercise, first take a look at the starting structure `mgo-100.traj` in the `relax` folder (do not use co2_ads_relax) by using the GUI. You should see a 4x4x4 surface of MgO (100), with its bottom two layers fixed. You will be using this script for running the surface optimization calculations. Before submitting the job, please modify the following line (in addition to the script to run) in the `anvil.sub` file:
+You will be using the relax.py script to perform a geometry relaxation of 2x2 unitcell of Nb_{2}C MXene. To proceed with this exercise, first take a look at the starting structure `init.traj` from the downloaded contents by using the GUI: the command is 'ase gui init.traj'. You should see a 2x2 unit cell of Nb_{2}C. You will be using this script for running the surface optimization calculations. Before submitting the job, please modify the following line (in addition to the script to run) in the `qe.sub` file:
 
 ```bash
 #SBATCH --mail-user=abc@gmail.com #provide your email for notification
 ```
 
-Same as before, once the job has done, you can find the total energy by running:
+Once the job is done, you can find the total energy by running:
 
 ```python
 from ase.io import read
-a = read('pw.out')
+a = read('scf.out')
 print(a.get_potential_energy())
 ```
+**HW 5:** Relaxation calculation to find optimized structure of bare MXene.
 
+<a name='convergence-with-k-points'></a>
+
+#### Convergence with k-Points ####
+Next, you will be modifying the 'relax.py' script with different k-points using linux command 'vim' or 'nano'. As MXene is a 2D material you will only modify the k_{x} and k_{y} and leave the k_{y} as 1. You will study the effect of k-point on the convergence by sampling k-points from 2 to 8. Use the mkdir command on Linux to create folders labeled with the k-point. Run the script in each by submitting a job to an external node as discussed previously. Once you have all the calculations done, make a plot for total energy as a function of k-point.
+
+From the plot, and your understanding of concepts in DFT, suggest your pick for the k-points and the rationale behind your choice.
+
+**HW 5:** Show the k-point convergence plot, your pick for the k-points, and your rationale.
+
+<a name='adsorption'></a>
 #### Adsorption ####
-In this part, you will be asked to plot the density of states (DOS) of the given structure. To do this, you simply just need to add a few lines in your `anvil.sub` in the `co2_ads_relax` folder:
+In this part, you will be asked to adsorb the Cl atom on different high-symmetry sites: fcc, hcp, and top, relax the structure, and plot the density of states (DOS) of the given structure. For the relaxation process, proceed in the same way as you have for the Nb_{2}C unit cell. 
+First, copy the scf.out you have generated from the first calculation to the directory you are performing the adsorption using linux command 'cp /(pathway to the directory containing the file)/scf.out ./', you can figure out the exact pathway by using the linux command 'pwd'. Then, change the file name of the scf.out to init.traj using the linux command 'mv scf.out init.traj'. To adsorb an atom onto an Nb or C, click on the reference atom you want to adsorb onto (for the example of Nb_{2}C the surface is symmetric, therefore all the Nb or C are equivalent). Then go to `Edit` -> `Add atoms`. Alternatively, you can use `ctrl` + `A`. Type in the symbol of element (e.g., Cl) and then select the relative coordinates. Finally, click on `Add` and the new atom should appear on the coordinates set up from the reference atom and the relative coordinate you have input. After adsorbing the atom, press 'ctrl' + 's' to save the changes. Then you can run the relaxation calculation same as you have done for the bare MXene.
 
-```bash
-/home/x-syj1022/apps/qe-7.2/bin/dos.x -in dos.in > dos.out  #DOS calculations
-```
-You also need to make sure that all the needed files are transferred to `$SCRATCH` and back once the job is done. Therefore, your `anvil.sub` now should look like this:
+After the relaxation is finished, you can run the dos calculations.
+For dos calculation, you need to copy folder 'dos' to the directory where you ran the relaxation calculation and generated wave fuctions from the relaxation. Before running dos calculation, please make sure your wavefunctions are saved in the directory in a folder named 'calcdir'. In the dos folder, they will include thesefiles: dos.in, dos.sub. 
+dos.sub is a submission file, designed in the same way as qe.sub we have used for relaxation. Your `dos.sub` should look like this:
 
 ```bash
 cd $SLURM_SUBMIT_DIR #Move to supply directory
 
-mkdir -p $SCRATCH/$SLURM_JOBID
-cp pw.in $SCRATCH/$SLURM_JOBID
-cp dos.in $SCRATCH/$SLURM_JOBID
-
-cd $SCRATCH/$SLURM_JOBID
-
-mpirun /home/x-syj1022/apps/qe-7.2/bin/pw.x -nd 4   <pw.in> pw.out
-
-/home/x-syj1022/apps/qe-7.2/bin/dos.x -in dos.in > dos.out  #DOS calculations
-
-cp pw.out $SLURM_SUBMIT_DIR
-cp dos.out $SLURM_SUBMIT_DIR
-cp dos.dos $SLURM_SUBMIT_DIR
+mpirun /home/x-yamilee/q-e-qe-7.1/bin/pw.x -nd 4 -i dos.in > dos.out  #DOS calculations
+/
 ```
-
-Note, in addition to `pw.in` as the input into `anvil.sub`, we now also need `dos.in`. This is already provided and should look like this:
+Note, in addition to `scf.in` as the input into `qe.sub`, we also need `dos.in`. This is already provided and should look like this:
 
 ```bash
 &dos
    prefix='calc',
    outdir='.'
    Emin=-80.0
-   Emax=20.0
+   Emax=80.0
    fildos='dos.dos'
 /
 ```
 
 Upon completion, the `dos.dos` file saves the data you need for the plot. You are then responsible for converting the data into a plot. You may write a script or use other tools, such as MATLAB and EXCEL to generate the plot.
 
-Finally, you will be calculating the adsorption energy of CO<sub>2</sub> on the MgO (100) surface. Adsorption energy calculation is given by:
-
-$$
-\Delta E_\mathrm{ads} = E_\mathrm{MgO+CO_{2}}  - E_\mathrm{MgO} - E_\mathrm{CO_{2}}
-$$
-
-You may use -1090.607 eV for E<sub>CO<sub>2</sub></sub>.
-
-To adsorb an atom onto an oxygen, click on the oxygen you want to adsorb onto (for the example of MgO the surface is symmetric, therefore all the oxygens are equivalent). Then go to `Edit` -> `Add atoms`. Alternatively, you can use `control` + `A`. Type in the symbol of element (e.g., C, O) and then select the relative coordinates. Finally, click on `Add` and the new atom should appear.
-
 **HW 5:** Report the converged energy of the optimized structure, and plot the density of states (DOS). 
 
 **You must succesfully complete this task before proceeding to the Final Project**
+
 
 
