@@ -30,12 +30,11 @@ Download and install:
 
 * [XQuartz](http://www.xquartz.org/)
 
-
 ### Windows
 
 Download and install:
 
-* [PuTTY](http://www.putty.org/)
+* [MobaXterm](https://mobaxterm.mobatek.net/download.html)
 * [Xming](http://sourceforge.net/projects/xming/) (Note: disable automatic installation of PuTTY with Xming. The above installer is a newer version)
 
 
@@ -63,8 +62,6 @@ ssh -i sshkey my-x-anvil-username anvil.rcac.purdue.edu
 ### Windows 
 Launch Xming. You will always need to have this open in order to forward graphical windows from the external clusters.
 
-* [MobaXterm](https://mobaxterm.mobatek.net/download.html)
-* [Xming](http://sourceforge.net/projects/xming/) (Note: disable automatic installation of PuTTY with Xming. The above installer is a newer version)
 
 
 ### Linux ###
