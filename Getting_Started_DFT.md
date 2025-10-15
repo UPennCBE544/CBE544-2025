@@ -23,8 +23,8 @@ ASE scripts can be run directly in the terminal (in the login node) or submittin
 
 To start this tutorial and the exercises that follow, log on to Anvil and download the following:
 ```bash
-wget https://github.com/UPennCBE544/CBE544-2025/blob/main/hw5.tar.gz
-tar -zxvf hw5_mod.tar.gz
+wget https://upenncbe544.github.io/CBE544-2025/hw5.tar.gz
+tar -xzvf hw5.tar.gz
 cd hw5
 ```
 
@@ -158,6 +158,7 @@ Upon completion, the `dos.dos` file saves the data you need for the plot. You ar
 **HW 5:** Report the converged energy of the optimized structure, and plot the density of states (DOS). 
 
 **You must succesfully complete this task before proceeding to the Final Project**
+
 
 
 
