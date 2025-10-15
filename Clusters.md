@@ -89,7 +89,7 @@ ____
 For the **first login** only, run the following command:
 
 ```bash
-cp /home/x-syj1022/.bashrc  ~/.bashrc 
+cp /home/x-shan4/.bashrc  ~/.bashrc 
 source ~/.bashrc
 ```
 
