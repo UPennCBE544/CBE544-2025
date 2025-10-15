@@ -23,9 +23,9 @@ ASE scripts can be run directly in the terminal (in the login node) or submittin
 
 To start this tutorial and the exercises that follow, log on to Anvil and download the following:
 ```bash
-wget https://upenncbe544.github.io/CBE544-2023.github.io/ASE/HW5_mod.tar.gz
-tar -zxvf HW5_mod.tar.gz
-cd HW5
+wget https://github.com/UPennCBE544/CBE544-2025/blob/main/hw5.tar.gz
+tar -zxvf hw5_mod.tar.gz
+cd hw5
 ```
 
 There are two files that are necessary to run jobs on the Anvil cluster. The first is `anvil.sub`; this is the file that tells the scheduler how much time the job is allowed, how many processors it requires, and other pertinent information. First, notice the comments in the beginning. These include information such as how much time to allocate, the number of nodes required, what the names of the output and error files are, what the name of the job should be, and what your email is. 
@@ -158,6 +158,7 @@ Upon completion, the `dos.dos` file saves the data you need for the plot. You ar
 **HW 5:** Report the converged energy of the optimized structure, and plot the density of states (DOS). 
 
 **You must succesfully complete this task before proceeding to the Final Project**
+
 
 
 
