@@ -145,8 +145,8 @@ Note, in addition to `scf.in` as the input into `qe.sub`, we also need `dos.in`.
 
 ```bash
 &dos
-   prefix='calc',
-   outdir='.'
+   prefix='../calcdir/calc',
+   outdir='.',
    Emin=-80.0
    Emax=80.0
    fildos='dos.dos'
@@ -158,6 +158,7 @@ Upon completion, the `dos.dos` file saves the data you need for the plot. You ar
 **HW 5:** Report the converged energy of the optimized structure, and plot the density of states (DOS). 
 
 **You must succesfully complete this task before proceeding to the Final Project**
+
 
 
 
