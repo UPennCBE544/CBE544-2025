@@ -53,7 +53,7 @@ module load openmpi
 mpirun  /home/x-yamilee/q-e-qe-7.1/bin/pw.x -nd 4 -i scf.in > scf.out
 ```
 
-Let's look at how a typical ASE script for geometry optimization is written. The code below shows an example of a `relax.py` script, which will be used in a later section to perform create the input for a simple MgO relaxation. We import all the relevant ASE modules in for this calculation.
+Let's look at how a typical ASE script for geometry optimization is written. The code below shows an example of a `relax.py` script, which will be used in a later section to perform create the input for a simple Nb<sub>2</sub>C relaxation. We import all the relevant ASE modules in for this calculation.
 
 ```python
 from ase import io
@@ -102,7 +102,7 @@ calc = espresso(pw=700,             #plane-wave cutoff
 <a name='optimization'></a>
 
 #### Relaxation ####
-You will be using the relax.py script to perform a geometry relaxation of 2x2 unitcell of Nb_{2}C MXene. To proceed with this exercise, first take a look at the starting structure `init.traj` from the downloaded contents by using the GUI: the command is 'ase gui init.traj'. You should see a 2x2 unit cell of Nb_{2}C. You will be using this script for running the surface optimization calculations. Before submitting the job, please modify the following line (in addition to the script to run) in the `qe.sub` file:
+You will be using the relax.py script to perform a geometry relaxation of 2x2 unitcell of Nb<sub>2</sub>C MXene. To proceed with this exercise, first take a look at the starting structure `init.traj` from the downloaded contents by using the GUI: the command is 'ase gui init.traj'. You should see a 2x2 unit cell of Nb<sub>2</sub>C. You will be using this script for running the surface optimization calculations. Before submitting the job, please modify the following line (in addition to the script to run) in the `qe.sub` file:
 
 ```bash
 #SBATCH --mail-user=abc@gmail.com #provide your email for notification
@@ -120,7 +120,7 @@ print(a.get_potential_energy())
 <a name='convergence-with-k-points'></a>
 
 #### Convergence with k-Points ####
-Next, you will be modifying the 'relax.py' script with different k-points using linux command 'vim' or 'nano'. As MXene is a 2D material you will only modify the k_{x} and k_{y} and leave the k_{y} as 1. You will study the effect of k-point on the convergence by sampling k-points from 2 to 8. Use the mkdir command on Linux to create subdirectories labeled with the k-point(e.g. 1-k, 2-k, ...). Run the script in each by submitting a job to an external node as discussed previously. Once you have all the calculations done, make a plot for total energy as a function of k-point.
+Next, you will be modifying the 'relax.py' script with different k-points using linux command 'vim' or 'nano'. As MXene is a 2D material you will only modify the k<sub>x</sub> and k<sub>y</sub> and leave the k<sub>z</sub> as 1. You will study the effect of k-point on the convergence by sampling k-points from 2 to 8. Use the mkdir command on Linux to create subdirectories labeled with the k-point(e.g. 1-k, 2-k, ...). Run the script in each by submitting a job to an external node as discussed previously. Once you have all the calculations done, make a plot for total energy as a function of k-point.
 
 From the plot, and your understanding of concepts in DFT, suggest your pick for the k-points and the rationale behind your choice.
 
@@ -128,8 +128,8 @@ From the plot, and your understanding of concepts in DFT, suggest your pick for 
 
 <a name='adsorption'></a>
 #### Adsorption ####
-In this part, you will be asked to adsorb the Cl atom on different high-symmetry sites: fcc, hcp, and top, relax the structure, and plot the density of states (DOS) of the given structure. For the relaxation process, proceed in the same way as you have for the Nb_{2}C unit cell. 
-First, copy the scf.out you have generated from the first calculation to the directory you are performing the adsorption using linux command 'cp /(pathway to the directory containing the file)/scf.out ./', you can figure out the exact pathway by using the linux command 'pwd'. Then, change the file name of the scf.out to init.traj using the linux command 'mv scf.out init.traj'. To adsorb an atom onto an Nb or C, click on the reference atom you want to adsorb onto (for the example of Nb_{2}C the surface is symmetric, therefore all the Nb or C are equivalent). Then go to `Edit` -> `Add atoms`. Alternatively, you can use `ctrl` + `A`. Type in the symbol of element (e.g., Cl) and then select the relative coordinates. Finally, click on `Add` and the new atom should appear on the coordinates set up from the reference atom and the relative coordinate you have input. After adsorbing the atom, press 'ctrl' + 's' to save the changes. Then you can run the relaxation calculation same as you have done for the bare MXene.
+In this part, you will be asked to adsorb the Cl atom on different high-symmetry sites: fcc, hcp, and top, relax the structure, and plot the density of states (DOS) of the given structure. For the relaxation process, proceed in the same way as you have for the Nb<sub>2</sub>C unit cell. 
+First, copy the scf.out you have generated from the first calculation to the directory you are performing the adsorption using linux command 'cp /(pathway to the directory containing the file)/scf.out ./', you can figure out the exact pathway by using the linux command 'pwd'. Then, change the file name of the scf.out to init.traj using the linux command 'mv scf.out init.traj'. To adsorb an atom onto an Nb or C, click on the reference atom you want to adsorb onto (for the example of Nb<sub>2</sub>C the surface is symmetric, therefore all the Nb or C are equivalent). Then go to `Edit` -> `Add atoms`. Alternatively, you can use `ctrl` + `A`. Type in the symbol of element (e.g., Cl) and then select the relative coordinates. Finally, click on `Add` and the new atom should appear on the coordinates set up from the reference atom and the relative coordinate you have input. After adsorbing the atom, press 'ctrl' + 's' to save the changes. Then you can run the relaxation calculation same as you have done for the bare MXene.
 
 After the relaxation is finished, you can run the dos calculations.
 For dos calculation, you need to copy folder 'dos' to the directory where you ran the relaxation calculation and generated wave fuctions from the relaxation. Before running dos calculation, please make sure your wavefunctions are saved in the directory in a folder named 'calcdir'. In the dos folder, they will include thesefiles: dos.in, dos.sub. 
@@ -158,6 +158,7 @@ Upon completion, the `dos.dos` file saves the data you need for the plot. You ar
 **HW 5:** Report the converged energy of the optimized structure, and plot the density of states (DOS). 
 
 **You must succesfully complete this task before proceeding to the Final Project**
+
 
 
 
