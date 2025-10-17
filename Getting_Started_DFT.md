@@ -23,6 +23,11 @@ ASE scripts can be run directly in the terminal (in the login node) or submittin
 
 To start this tutorial and the exercises that follow, log on to Anvil and download the following:
 ```bash
+cp ~/home/x-shan4/.bashrc ./
+source .bashrc
+```
+And to use sq as a command for checking on your jobs, please change the alias set up for sq in .bashrc using the text editor(vim, nano, etc.)
+```bash
 wget https://upenncbe544.github.io/CBE544-2025/hw5.tar.gz
 tar -xzvf hw5.tar.gz
 cd hw5
@@ -52,7 +57,7 @@ module load openmpi
 
 mpirun  /home/x-yamilee/q-e-qe-7.1/bin/pw.x -nd 4 -i scf.in > scf.out
 ```
-
+Please make sure the Allocation is eve210010. qe.sub can also be edited using text editor(vim, nano, etc.)
 Let's look at how a typical ASE script for geometry optimization is written. The code below shows an example of a `relax.py` script, which will be used in a later section to perform create the input for a simple Nb<sub>2</sub>C relaxation. We import all the relevant ASE modules in for this calculation.
 
 ```python
@@ -107,7 +112,10 @@ You will be using the relax.py script to perform a geometry relaxation of 2x2 un
 ```bash
 #SBATCH --mail-user=abc@gmail.com #provide your email for notification
 ```
-
+You can submit the job by typing running the command:
+```bash
+sbatch qe.sub
+```
 Once the job is done, you can find the total energy by running:
 
 ```python
@@ -158,6 +166,7 @@ Upon completion, the `dos.dos` file saves the data you need for the plot. You ar
 **HW 5:** Report the converged energy of the optimized structure, and plot the density of states (DOS). 
 
 **You must succesfully complete this task before proceeding to the Final Project**
+
 
 
 
