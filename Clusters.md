@@ -51,12 +51,13 @@ For the [**Anvil**]([https://www.rcac.purdue.edu/knowledge/anvil/access/login]) 
 Follow the instructions below for your system:
 
 ### Mac OSX
+Launch Xquartz before logging in.
 
 Open "Terminal" or "Command+Space" to search Terminal using "spotlight search"
 
 In a terminal type:
 ```bash
-ssh -i sshkey my-x-anvil-username anvil.rcac.purdue.edu
+ssh -Y sshkey my-x-anvil-username anvil.rcac.purdue.edu
 ```
 
 ### Windows 
@@ -68,7 +69,7 @@ Launch Xming. You will always need to have this open in order to forward graphic
 
 In a terminal:
 ```bash
-ssh -i sshkey my-x-anvil-username anvil.rcac.purdue.edu
+ssh -Y sshkey my-x-anvil-username anvil.rcac.purdue.edu
 ```
 ____
 
