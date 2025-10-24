@@ -23,7 +23,7 @@ ASE scripts can be run directly in the terminal (in the login node) or submittin
 
 To start this tutorial and the exercises that follow, log on to Anvil and download the following:
 ```bash
-cp ~/home/x-shan4/.bashrc ./
+cp /home/x-shan4/.bashrc ./
 source .bashrc
 ```
 And to use sq as a command for checking on your jobs, please change the alias set up for sq in .bashrc using the text editor(vim, nano, etc.)
@@ -166,6 +166,7 @@ Upon completion, the `dos.dos` file saves the data you need for the plot. You ar
 **HW 5:** Report the converged energy of the optimized structure, and plot the density of states (DOS). 
 
 **You must succesfully complete this task before proceeding to the Final Project**
+
 
 
 
