@@ -40,19 +40,17 @@ Goal: The main scientific goal is to design a potential catalytic reaction from 
 <a name='Terms'></a>
 
 ## Terminology ##
-- **Surface Facet Miller Index**: The Miller index (hkl) describes the orientation of a crystal plane by indicating how it cuts through the unit cell of the crystal structure
+- **High Symmetry Adsorption Sites**: FCC(Face-Centered Cubic), HCP(Hexagonal Close-Packed), TOP(Directly on surface metal site) and Bridge(Located halfway between two surface atoms, over the bond connecting them) are specific locations on a crystal surface with the higheste degree of symmetry where functional groups or termination can bind.
 
-- **Termination**: Termination refers to the specific arrangement and coordination of lattice metals and their corresponding oxygens at a surface. Different terminations, whether metal-terminated or oxygen-terminated, significantly affect surface properties, including reactivity and stability, and can result from various preparation methods.
+- **Termination**: Termination refers to the specific arrangement and coordination of surface groups that are adsorbed from transition from MAX phase to MXene. Different terminations, whether H, Cl, O, F, or OH significantly affect surface properties, including reactivity and stability, and can result from various synthesis methods.
 
-- **Symmetric Surface**: A symmetric surface is characterized by an arrangement of atoms that is the same on both sides of the surface plane, exhibiting inversion symmetry. They may not always be stoichiometric, meaning the atomic ratios (e.g., metal to oxygen) can differ from the bulk composition.
+- **Functional Groups**: 
 
-- **Asymmetric Surface**: An asymmetric surface tends to lack inversion symmetry of atoms on both sides, but not always. We will define the clean (lacking adsorbates) asymmetric surfaces to be stoichiometric, maintaining a specific metal-to-oxygen ratio overall.
+- **Adsorption Energy**: 
 
-- **Pourbaix Diagram**: Also known as a thermodynamic stability diagram. It plots free energy relative to some reference surface (usually the bulk cleaved configuration) vs some variable, in our case we will plot potential ($U$) on the x axis. Free energy is calcuated for each surface via the following equation. $\Delta G = E_{\text{slab}}^{\text{DFT}} - E_{\text{reference}}^{\text{DFT}} + \sum_A \left( \Delta n_A \cdot (\text{ref}_A^{\text{DFT}} + \text{correction}_A(T, P, \mu, pH, U)) \right)$ where A is any element in our system, the correction term is a function of selected environmental conditions.
+- **Bader Charge Analysis**: 
 
-- **Surface Energy ($\gamma_{(hkl)}$)**: This can be thought of as the energy for the specific modeled surface to exist. It indicates the thermodynamic stability of a surface. Surface energy is influenced by surface geometry, termination, and adsorbates. $\gamma_{(hkl)}(pH,U) = -\frac{E_{slab} + N \cdot E_{bulk} - \sum_{i} \delta n_{i} \cdot \mu_{i}^{\text{REF}}(pH,U)}{2A}$. Note: $E_{bulk}$ is calculated by generating 4 of the same surface facet+termination each with different amounts of "bulk" and plotting total potential energy vs system size and getting the slope.
 
-- **Wulff's Theorem**: This theorem states that the shape of a crystal/nanoparticle at equilibrium is determined by the minimization of its total surface energy. The equilibrium shape (also known as the **Wulff Construction**) is the convex hull of the surfaces with the lowest energies.
 
 <a name='Plan'></a>
 
