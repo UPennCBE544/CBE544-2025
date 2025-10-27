@@ -42,10 +42,10 @@ Goal: The main scientific goal is to design a potential catalytic reaction from 
 ## Terminology ##
 - **High Symmetry Adsorption Sites**: FCC(Face-Centered Cubic), HCP(Hexagonal Close-Packed), TOP(Directly on surface metal site) and Bridge(Located halfway between two surface atoms, over the bond connecting them) are specific locations on a crystal surface with the higheste degree of symmetry where functional groups or termination can bind.
 
-- **Termination**: Termination refers to the specific arrangement and coordination of surface groups that are adsorbed from transition from MAX phase to MXene. Different terminations, whether H, Cl, O, F, or OH significantly affect surface properties, including reactivity and stability, and can result from various synthesis methods.
+- **Termination**: Termination refers to the specific arrangement and coordination of surface groups that are adsorbed to MXene during the synthesis of MXene from MAX phase. Different terminations, whether H, Cl, O, F, or OH significantly affect surface properties, including reactivity and stability, and can result from various synthesis methods.
 
-- **Functional Groups**: 
-
+- **Functional Groups**: Functional Groups refers to the specific groups that are adsorbed on the MXene through nucleophilic substitution of the termination with anion donors or by applying electrochemical potential to have partial elimination of termination group to adsorb designated functional groups.
+  
 - **Adsorption Energy**: 
 
 - **Bader Charge Analysis**: 
