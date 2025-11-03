@@ -15,7 +15,7 @@ permalink: /Project/
 Turn in your final report on CANVAS or email to:
 
 ```
-alevoj@seas.upenn.edu, rthatch@seas.upenn.edu
+alevoj@seas.upenn.edu, hsang@seas.upenn.edu
 ```
 
 <a name='intro'></a>
