@@ -29,7 +29,7 @@ Goal: The main scientific goal is to design a potential catalytic reaction from 
 
 ### Motivation ###
 
-- **Synthesis of 2D Organometallic Material**: MXene is a 2 dimentional transitional metal carbide or nitride which allows the material to be easily tunable with surface modification to have drastically  different properties. A deeper understanding of thermodynamic stability and adsorption mechanism supports the advancement of sustainable and ecnomically attractive option for active electrocatalysts.
+- **Synthesis of 2D Organometallic Material**: MXene is a 2 dimentional transitional metal carbide or nitride which allows the material to be easily tunable with surface modification to have drastically different properties. Organometallic materials are known to be a valuable source for A deeper understanding of thermodynamic stability and adsorption mechanism supports the advancement of sustainable and ecnomically attractive option for active electrocatalysts.
 
 - **Adsorption Configuration and Optimization**: By modeling different surface configuration of the adsorption, we gain insight into how environmental conditions (vacancy, dehydrogenation, temperature, etc.) and configuration influence the adsorption stability. This could lead to optimization strategies that improve catalyst activity and stability by tuning vacancy rates and ligand environment.
 
@@ -40,17 +40,18 @@ Goal: The main scientific goal is to design a potential catalytic reaction from 
 <a name='Terms'></a>
 
 ## Terminology ##
-- **High Symmetry Adsorption Sites**: FCC(Face-Centered Cubic), HCP(Hexagonal Close-Packed), TOP(Directly on surface metal site) and Bridge(Located halfway between two surface atoms, over the bond connecting them) are specific locations on a crystal surface with the higheste degree of symmetry where functional groups or termination can bind.
+- **High Symmetry Adsorption Sites**: FCC(Face-Centered Cubic), HCP(Hexagonal Close-Packed), TOP(Directly on surface metal site) and Bridge(Located halfway between two surface atoms, over the bond connecting them) are specific locations on a crystal surface with the highest degree of symmetry where functional groups or termination can bind.
 
 - **Termination**: Termination refers to the specific arrangement and coordination of surface groups that are adsorbed to MXene during the synthesis of MXene from MAX phase. Different terminations, whether H, Cl, O, F, or OH significantly affect surface properties, including reactivity and stability, and can result from various synthesis methods.
 
 - **Functional Groups**: Functional Groups refers to the specific groups that are adsorbed on the MXene through nucleophilic substitution of the termination with anion donors or by applying electrochemical potential to have partial elimination of termination group to adsorb designated functional groups.
   
-- **Adsorption Energy**: 
+- **Adsorption Energy**: Adsorption energy refers the the potential energy difference between the initial system and final system, where th energy of initial system are defined as  addition of adsorbate and adsorbent and energy of the final system is defined as the combined system's total potential energy. Thus the equation is defined as:
+  E<sub>ads</sub> = E<sub>final</sub> -E<sub>init</sub>
 
-- **Bader Charge Analysis**: 
+- **Bader Charge Analysis**: Bader charge analysis is a computational method for partitioning a charge density grid into Bader(atomic) volumes. Bader volume is defined as a volume that contains a single charge density maximum, and is separated from other volumes by surfaces(zero-flux surface) where the charge density is the minimum normal to the surface. Charge density analysis is useful technique to compare your results with experimental results because it is an observable quantity that can be measured or calculated experimentally, while being insensitive to the basis set used.
 
-
+-**Cyclo hydrocarbons**: Cyclo hydrocarbons refers to alkane, alkene and alkyne which contains at least one "ring" structure with in the carbon chain. Typically it has 2 less hydrogens compared to the structure without the ring. For example, alkane's formula is C<sub>n</sub>H<sub>2n+2</sub> while cycloalkane's formula is C<sub>n</sub>H<sub>2n</sub>. 
 
 <a name='Plan'></a>
 
