@@ -51,7 +51,7 @@ Goal: The main scientific goal is to design a potential catalytic reaction from 
 
 - **Bader Charge Analysis**: Bader charge analysis is a computational method for partitioning a charge density grid into Bader(atomic) volumes. Bader volume is defined as a volume that contains a single charge density maximum, and is separated from other volumes by surfaces(zero-flux surface) where the charge density is the minimum normal to the surface. Charge density analysis is useful technique to compare your results with experimental results because it is an observable quantity that can be measured or calculated experimentally, while being insensitive to the basis set used.
 
--**Cyclo hydrocarbons**: Cyclo hydrocarbons refers to alkane, alkene and alkyne which contains at least one "ring" structure with in the carbon chain. Typically it has 2 less hydrogens compared to the structure without the ring. For example, alkane's formula is C<sub>n</sub>H<sub>2n+2</sub> while cycloalkane's formula is C<sub>n</sub>H<sub>2n</sub>. 
+- **Cyclo hydrocarbons**: Cyclo hydrocarbons refers to alkane, alkene and alkyne which contains at least one "ring" structure with in the carbon chain. Typically it has 2 less hydrogens compared to the structure without the ring. For example, alkane's formula is C<sub>n</sub>H<sub>2n+2</sub> while cycloalkane's formula is C<sub>n</sub>H<sub>2n</sub>. 
 
 <a name='Plan'></a>
 
