@@ -57,9 +57,9 @@ Goal: The main scientific goal is to design a potential catalytic reaction from 
 
 ## Plan ##
 
-For each symmetric Surface we need to go through the following path.
+For each sites in the basal plane, we need to go through the following path.
 
-<img width="968" alt="Screenshot 2024-10-22 at 8 00 01 PM" src="https://github.com/user-attachments/assets/8ef50116-698b-476e-b0db-ed8eb3596ee4">
+<img width="968" src="docs/figure1.png">
 
 ### Detailed plan: ###
 
