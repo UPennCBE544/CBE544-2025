@@ -9,7 +9,7 @@ permalink: /Project/
 2. [Motivation](#MO)
 3. [Terms to Know](#Terms)
 4. [Plan](#Plan)
-5. [Individual Taksks](#ind)
+5. [Individual Tasks](#ind)
 6. [Final Report](#final)
 
 Turn in your final report on CANVAS or email to:
