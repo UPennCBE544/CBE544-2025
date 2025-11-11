@@ -15,7 +15,7 @@ We will be using the [Atomic Simulation Environment (ASE)](https://wiki.fysik.dt
 * [Problem Description](CBE_5440___HW5.pdf)
  
 ### Final Project ### 
-* [Project Description and Requirements]
+* [Project Description and Requirements](ProjectDescription.md)
 * [Project Assignments]
 
 ## Guides ##
