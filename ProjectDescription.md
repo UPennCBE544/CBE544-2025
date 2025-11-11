@@ -87,7 +87,7 @@ We will break into groups of 3-4 students and each group will be assigned a seri
 Individual Task
 1. Download the packages containing the adsorbates and necessary base structure(Relaxed Nb<sub>2</sub>C MXene, and Nb<sub>2</sub>CCl MXene)/files.
     ```bash
-    wget https://upenncbe544.github.io/CBE544-2025/CBE5400.tar.gz
+    wget https://upenncbe544.github.io/CBE544-2025/CBE5440.tar.gz
     tar -xzvf CBE5400.tar.gz
     ```
     Distribute the ligands among team members, each member should have 2 ligands. After downloading the ligands, remove one hydrogen from them, for cycloalkane hydrogen from any carbon, for cycloalkene, a hydrogen from carbon that contains a double bond, for carboxylic acid, remove from the -COOH to create -COO, and lastly for amine, remove from -NH2 to create -NH, or amido radical.
