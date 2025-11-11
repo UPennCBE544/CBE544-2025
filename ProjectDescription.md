@@ -10,7 +10,7 @@ permalink: /Project/
 3. [Terms to Know](#Terms)
 4. [Plan](#Plan)
 5. [Individual Taksks](#ind)
-6. [Final Report Rubric](#final)
+6. [Final Report](#final)
 
 Turn in your final report on CANVAS or email to:
 
