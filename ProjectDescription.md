@@ -154,3 +154,10 @@ Individual Task
      <img width="968" src="docs/three.png">
      <img width="968" src="docs/four.png">
      <img width="968" src="docs/five.png">
+
+6. Put all you work into a 10 minute presentation powerpoint. We will expect to have individual presentation on 11/25 for everyone.
+
+Group Task
+1. Run the same calculations and measurements for Cl-terminated MXenes.
+2. Provide a simple linear regression plot using one of the factors you have measured. I would recommend using adsorption energy as y-axis and try to fit around different parameters such as number of carbons, fermi level, gain/loss of electron density, etc. as x-axis to see if you can find a trend.
+3. Do literature research on the catalytic reactions that has been done in similar settings(I would suggest look for organometallic compounds papers that has similar structure) to formulate a possible catalytic reaction pathway. Do not consider kinetical barriers such as activation energy or temperature profile, but just the thermodynamical feasibility of the reaction. Group project needs to be presented on classtime in ppt format in 12/8. All the files and data needs to be submitted by 12/12. 
