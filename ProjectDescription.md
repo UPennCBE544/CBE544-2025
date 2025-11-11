@@ -10,7 +10,7 @@ permalink: /Project/
 3. [Terms to Know](#Terms)
 4. [Plan](#Plan)
 5. [Individual Taksks](#ind)
-6. [Final Report Rubric](https://github.com/UPennCBE544/CBE5440-2024/blob/main/Final_Project/CBE%205440%20-%20Final%20Project%20-%20Report.pdf)
+6. [Final Report Rubric]()
 
 Turn in your final report on CANVAS or email to:
 
@@ -90,9 +90,9 @@ Individual Task
     wget https://upenncbe544.github.io/CBE544-2025/CBE5400.tar.gz
     tar -xzvf CBE5400.tar.gz
     ```
-    Distribute the ligands among team members, each member should have 2 ligands.
+    Distribute the ligands among team members, each member should have 2 ligands. After downloading the ligands, remove one hydrogen from them, for cycloalkane hydrogen from any carbon, for cycloalkene, a hydrogen from carbon that contains a double bond, for carboxylic acid, remove from the -COOH to create -COO, and lastly for amine, remove from -NH2 to create -NH, or amido radical.
    
-2. Adsorb and relax the structure on the 'bare' surface in 2 configuration where either it is tilted or standing up in two directions.
+3. Adsorb and relax the structure on the 'bare' surface in 2 configuration where either it is tilted or standing up in two directions.
     a. Adsorb the first ligands straight and tilted using the adsorbate.py.
     Ex)
     <img width="968" src="docs/image2.png">
@@ -118,10 +118,10 @@ Individual Task
    b. Adsorb the second ligands straight in the bottom layer in the same way. Instead of fcc, hcp, and top, utilze fcc-, hcp-, top-. You also need to pick the indexes of the surface atoms opposite for fcc and top, but same for hcp. However, you need to input fcc-, hcp- and top- for the positions. 
    c. Calculate the adsorption energies of each configuration to figure out the most optimal structure. The analysis from here on will be only done in the most optimal structure.
 
-3. Run a DOS calculation on the relaxed structures, same as you did for homework 5.
+4. Run a DOS calculation on the relaxed structures, same as you did for homework 5.
       
       
-4. Run Bader Charge calculation.
+5. Run Bader Charge calculation.
    a. First run command:
    ```bash
    cp /home/x-shan4/.bashrc ./
