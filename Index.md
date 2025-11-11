@@ -16,7 +16,6 @@ We will be using the [Atomic Simulation Environment (ASE)](https://wiki.fysik.dt
  
 ### Final Project ### 
 * [Project Description and Requirements](ProjectDescription.md)
-* [Project Assignments]
 
 ## Guides ##
 ### Getting Started ###
