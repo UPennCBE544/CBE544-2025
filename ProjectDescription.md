@@ -9,7 +9,7 @@ permalink: /Project/
 2. [Motivation](#MO)
 3. [Terms to Know](#Terms)
 4. [Plan](#Plan)
-5. [Final Presentation Rubric](https://github.com/UPennCBE544/CBE5440-2024/blob/main/Final_Project/CBE%205440%20-%20Final%20Project%20-%20Presentation%20Rubric%20and%20Expectations%20Sheet.pdf)
+5. [Individual Taksks](#ind)
 6. [Final Report Rubric](https://github.com/UPennCBE544/CBE5440-2024/blob/main/Final_Project/CBE%205440%20-%20Final%20Project%20-%20Report.pdf)
 
 Turn in your final report on CANVAS or email to:
@@ -65,7 +65,8 @@ For each sites in the basal plane, we need to go through the following path.
 
 <img width="968" src="docs/figure1.png">
 
-### Detailed plan: ###
+<a name='ind'></a>
+### Detailed plan for Individual tasks ###
 
 We will break into groups of 3-4 students and each group will be assigned a series of surfaces they will be responsible for.
    
