@@ -137,31 +137,19 @@ Individual Task
 
    a. Make a new directories with different components. 1. bare_MXene, 2. adsorbate (3. Cl for Cl-terminated system) inside the folder where the relaxed structure is located. Copy your scf.out into all of the new directories.
     
-   b. Open scf.out in all the directories and erase everything in the scf.out file except the part that is the name of the directory: for example, for adsorbate directory, erase all the atoms in the system except the ligand part.
+   b. Open scf.out in all the directories and erase everything in the scf.out file except the part that is the name of the directory: for example, for adsorbate directory, erase all the atoms in the system except the ligand part. This is the process o isolating the individual components of the system to visualize the delta electron distribution of the system.
 
-   c. After erasing them, run a scf calculation using the scf.py.
+   c. After the parts , run a scf calculation on the system using the scf.py provided in the packet. After the scf calculation has converged, run bader charge calculation on the newly generated scf.out files.
 
-         1. mv ~/scripts_Final_Project/symmetric_slabs ~/scripts_Final_Project/symmetric_slabs_old
-   
-         2. cp -r /anvil/projects/x-eve210010/scripts/scripts_Final_Project/symmetric_slabs/ ~/scripts_Final_Project
+   d. Download VESTA from [webpage](https://jp-minerals.org/vesta/en/).
 
-   d. Modify this script to have your facet and your adsorbate configuration you want to map:
-   
-         1. Make modifications: nano ~/scripts_Final_Project/symmetric_slabs/adsorbate_map.py
-
-         2. Run the script: python ~/scripts_Final_Project/symmetric_slabs/adsorbate_map.py
-
-   e. Do this for the rest of the adsorbate configurations you want to map
-
-   f. Submit the jobs: (jobs submit one every 10 seconds, so be patient)
-
-            Run this to confirm the directories you want to submit from are listed: python ~/scripts_Final_Project/symmetric_slabs/submit_symmetric.py
-
-            Modify your own submission script so that submit = True: nano ~/scripts_Final_Project/symmetric_slabs/submit_symmetric.py
-
-            Now run the script again: python ~/scripts_Final_Project/symmetric_slabs/submit_symmetric.py
-
-            After submission, modify your own submission script so that submit = False: nano ~/scripts_Final_Project/symmetric_slabs/submit_symmetric.py
-
-   g.  As jobs are completing you can run this python script that will make ```opt.traj``` files out of finished jobs: ```python /anvil/projects/x-eve210010/scripts/scripts_Final_Project/asymmetric_slabs/LOGTRAJ.py``` 
-
+   e. Download the density.cube files from each components(total system, adsorbate, MXene, termination) your local machine using scp command:
+      ```bash
+   scp x-you_id@anvil.rcac.purdue.edu:/path/to/the/density.cube /path/to/your/local/machine 
+     ```
+   f. Use VESTA to visualize the delta electron distribution of adsorption by subtracting the volumetric data of adsorbate, MXene, and termination from the total system. Set the isosurface value to 0.003, and keep the positive delta charge region color yellow, and negative delta charge region blue. 
+     <img width="968" src="docs/one.png">
+     <img width="968" src="docs/two.png">
+     <img width="968" src="docs/three.png">
+     <img width="968" src="docs/four.png">
+     <img width="968" src="docs/five.png">
