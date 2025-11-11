@@ -95,7 +95,7 @@ Individual Task
 2. Adsorb and relax the structure on the 'bare' surface in 2 configuration where either it is tilted or standing up in two directions.
     a. Adsorb the first ligands straight and tilted using the adsorbate.py.
     Ex)
-    <img width="968" src="docs/image1.png">
+    <img width="968" src="docs/image2.png">
       Step 1. Adsorb the ligand standing straight up. 
       ```bash
       ads = io.read('pathway/to/adsorbate/scf.out')
