@@ -51,7 +51,11 @@ Goal: The main scientific goal is to design a potential catalytic reaction from 
 
 - **Bader Charge Analysis**: Bader charge analysis is a computational method for partitioning a charge density grid into Bader(atomic) volumes. Bader volume is defined as a volume that contains a single charge density maximum, and is separated from other volumes by surfaces(zero-flux surface) where the charge density is the minimum normal to the surface. Charge density analysis is useful technique to compare your results with experimental results because it is an observable quantity that can be measured or calculated experimentally, while being insensitive to the basis set used.
 
-- **Cyclo hydrocarbons**: Cyclo hydrocarbons refers to alkane, alkene and alkyne which contains at least one "ring" structure with in the carbon chain. Typically it has 2 less hydrogens compared to the structure without the ring. For example, alkane's formula is C<sub>n</sub>H<sub>2n+2</sub> while cycloalkane's formula is C<sub>n</sub>H<sub>2n</sub>. 
+- **Cyclo hydrocarbons**: Cyclo hydrocarbons refers to alkane, alkene and alkyne which contains at least one "ring" structure with in the carbon chain. Typically it has 2 less hydrogens compared to the structure without the ring. For example, alkane's formula is C<sub>n</sub>H<sub>2n+2</sub> while cycloalkane's formula is C<sub>n</sub>H<sub>2n</sub>.
+
+- **Amine**: Amines are a class of organic compounds derived from ammonia NH<sub>3</sub> where one or more hydrogen atoms are replaced by alkyl or aryl groups. They are characterized by a nitrogen atom with a lone pair of electrons, with the formula -RNH.
+
+- **Carboxyl Acid**: Carboxyl Acid is an organic compound that contains a carboxyl functional group, which is a carbon atom double-bonded to one oxygen atom and single-bonded to a hydroxyl (-OH) group. This -COOH group is responsible for their acidic properties, as they can donate a hydrogen ion in solution.
 
 <a name='Plan'></a>
 
@@ -63,97 +67,79 @@ For each sites in the basal plane, we need to go through the following path.
 
 ### Detailed plan: ###
 
-We will break into groups of 2 students and each group will be assigned a series of surfaces they will be responsible for.
+We will break into groups of 3-4 students and each group will be assigned a series of surfaces they will be responsible for.
    
-       a. {(2,2,1),(3,3,1),(4,4,1),(0,1,2)} - Group 1
+       a. Cycloalkane - Group 1
 
-       b. {(1,2,2),(1,3,3),(1,4,4),(0,2,1)} - Group 2
+       b. Cycloalkene - Group 2 
 
-       c. {(2,1,1),(3,1,1),(4,1,1),(2,1,0)} - Group 3
+       c. Amine - Group 3
 
-       d. {(1,1,5),(1,5,5),(1,1,2),(1,1,3)} - Group 4
+       d. Carboxylic Acid - Group 4
 
        Groups: 
-         (1) Conor & Erika
-         (2) Daniel & George
-         (3) Shiqiang & Jinyu
-         (4) Yeri & Achala
+         (1) Lily, Jiachun, Yoky, Zhanyuan
+         (2) Anika, Brigid, Shellyn, Zaini 
+         (3) Bo, Eric, Yerim
+         (4) Erin, Haomin, Khue
 
-      Nanoparticle Conditions: 
-         Group 1 - pH = 1, U = 0
-         Group 2 - pH = 1, U = 1.3
-         Group 3 - pH = 1, U = 1.6
+Individual Task
+1. Download the packages containing the adsorbates and necessary base structure(Relaxed Nb<sub>2</sub>C MXene, and Nb<sub>2</sub>CCl MXene)/files.
+    ```bash
+    wget https://upenncbe544.github.io/CBE544-2025/CBE5400.tar.gz
+    tar -xzvf CBE5400.tar.gz
+    ```
+    Distribute the ligands among team members, each member should have 2 ligands.
+   
+2. Adsorb and relax the structure on the 'bare' surface in 2 configuration where either it is tilted or standing up in two directions.
+    a. Adsorb the first ligands straight and tilted using the adsorbate.py.
+    Ex)
+    <img width="968" src="docs/image1.png">
+      Step 1. Adsorb the ligand standing straight up. 
+      ```bash
+      ads = io.read('pathway/to/adsorbate/scf.out')
+      ```
+      Change the default pathway to the pathway for your ligand. You can find the pathway to the ligand by using pwd command in the directory where it contains the scf.out file of ligand.
+      Choose the index of the atoms in the ligand so that you get a straight chain. Then you need to choose the index atoms from the scf.out file of the bare system to designated sites. For fcc, you need to pick a metal atom from the bottom layer, and 2 adjacent metal atoms in the same layer. For hcp you need to pick a carbon atom and the 2 adjacent carbon atoms in the same layer. For tope site, you use the same settings as the fcc just on the top layer of metal. And for the position of adsorbate, input: fcc, hcp or top. The default setting should be the adsorbate standing straight up.
+      Step 2. Adsorb the ligand tilted.
+      Everything should be the same as the Step1, but you need to modify the angles in the code:
+      ```bash
+      if index4 == 'fcc' or index4 == 'top' or index4 == 'hcp':
+      ads.rotate(90,v,reference_position_ads)
+      if cpos[index_ads1][2] > cpos[index_ads2][2]:
+          ads.rotate(180,v,reference_position_ads) <- Modify here
+      else:
+          ads.rotate(180,v,reference_position_ads)
+      elif index4 == 'fcc-' or index4 == 'top-' or index4 == 'hcp-':
+        ads.rotate(90, v, reference_position_ads) <- Modify here
+      ```
+      Try different angles(0, 30, 60) to have the ligand lying as close as possible to the surface without it colliding with the periodic counterpart. Make sure to record the angle you   have changed to.
+   b. Adsorb the second ligands straight in the bottom layer in the same way. Instead of fcc, hcp, and top, utilze fcc-, hcp-, top-. You also need to pick the indexes of the surface atoms opposite for fcc and top, but same for hcp. However, you need to input fcc-, hcp- and top- for the positions. 
+   c. Calculate the adsorption energies of each configuration to figure out the most optimal structure. The analysis from here on will be only done in the most optimal structure.
 
-
-<img width="274" alt="Screenshot 2024-11-20 at 2 58 56 PM" src="https://github.com/user-attachments/assets/527de129-a4fa-4f4b-b8a6-6bfef077d897">
-
-0. Prep Work - we need a rutile RuO<sub>2</sub> bulk that is optimized
-
-2. Generate Asymmetric Surface Facet - Provided by Rachel
-
-3. Adsorb on the Asymmetric Surface at up to 3 adsorbate coverages -
+3. Run a DOS calculation on the relaxed structures, same as you did for homework 5.
       
-      FIRST. Please go into your personal scratch and delete everything: ``` rm -r /anvil/scratch/x-YOURUSERNAME/Final_Project_2024 ```
+      
+4. Run Bader Charge calculation.
+   a. First run command:
+   ```bash
+   cp /home/x-shan4/.bashrc ./
+   source .bashrc   
+   ```
+   Copy pp.in and bader.sub to the directory you want to run bader charge calculation on. You need to check to see if that directory also contains calcdir, because pp.in takes input from the wave functions. After the bader.sub has been completed, you should see a new file has been generated: 'density.cube'
+   Run command:
+   ```bash
+   bader density.cube  
+   ```
+  Which will generate the ACF.DAT file from density.cube file. You can read the ACF.DAT file to see how much electrons are assigned to each atoms based on the bader space. Run the bader charge analysis for the adsorbate as well, and you can compare how the total molecule & individual atoms have gained or lost electrons during the adsorption process.
    
-      a. Update the Adsorption script in your home:
+5. Electron Distribution Plot.
 
-         - First remove the old scripts folder: rm -r ~/scripts_Final_Project
-
-         - Copy over the adsorption script to your home: cp -r /anvil/projects/x-eve210010/scripts/scripts_Final_Project ~/
-   
-      b. Open the reference trajectory file: ```ag /anvil/projects/x-eve210010/REFERENCES/dopedSurface/ruo2/YOUR_FACET/clean/No_defect/0%_doped/PBE/relax/init.traj```
-
-         In terminal: control+z, then type bg
-   
-      c. Determine which metal/oxygen atom/s you want to adsorb onto. If you have 4 or more metal atoms at the surface, you will need to adsorb on 1, approximately half, and all of the surface sites. We tend to adsorb on metal atoms, however, if there is an oxygen on top of the metal atom, we will instead adsorb on that oxygen.
-   
-      d. Modify the Adsorption file (in the last few lines) to have YOUR_FACET and the indices of the atoms you want to adsorb on top of: ```nano ~/scripts_Final_Project/asymmetric_slabs/Adsorptions_Asymmetric.py ```
-      <img width="652" alt="Screenshot 2024-11-20 at 1 29 57 PM" src="https://github.com/user-attachments/assets/a0329922-7904-48bc-9184-1c28667a6898">
-
-      e. Run the Adsorption python script: ```python ~/scripts_Final_Project/asymmetric_slabs/Adsorptions_Asymmetric.py ```
-
-      f. Check on the ```init.traj``` files that were generated and listed after running the Adsorption python script. Do this by opening the files using ```ag FILE_PATH```
-
-      g. **Do the other coverages that need to be generated (reminder: we want to do 1 adsorbate, approximately half adsorbed, and all adsorbed).** The grey and white table above shows the max number of sites you can adsorb onto.
-   
-      h. **Repeate b-f for your second facet.**
-
-      i. Now copy over clean/No_defect surface from shared scratch to your directory structure for BOTH facets:
-
-         1. Make sure to specify YOUR_USERNAME and your YOUR_FACET in this line: mkdir -p /anvil/scratch/YOUR_USERNAME/Final_Project_2024/dopedSurface/ruo2/YOUR_FACET/clean/No_defect/0%_doped/PBE
-   
-         2. Copy the init.traj from the shared scratch (again make sure to use YOUR_FACET and YOUR_USERNAME): cp /anvil/projects/x-eve210010/REFERENCES/dopedSurface/ruo2/YOUR_FACET/clean/No_defect/0%_doped/PBE/relax/init.traj /anvil/scratch/YOUR_USERNAME/Final_Project_2024/dopedSurface/ruo2/YOUR_FACET/clean/No_defect/0%_doped/PBE
-   
-      i. Submit the jobs: (jobs submit one every 10 seconds, so be patient)
-
-            Run this to confirm the directories you want to submit from are listed: python ~/scripts_Final_Project/asymmetric_slabs/submit_asymmetric.py
-
-            Modify your own submission script so that submit = True: nano ~/scripts_Final_Project/asymmetric_slabs/submit_asymmetric.py
-
-            Now run the script again: python ~/scripts_Final_Project/asymmetric_slabs/submit_asymmetric.py
-
-            After submission, modify your own submission script so that submit = False: nano ~/scripts_Final_Project/asymmetric_slabs/submit_asymmetric.py
-
-      j. As jobs are completing you can run this python script that will make ```opt.traj``` files out of finished jobs: ```python /anvil/projects/x-eve210010/scripts/scripts_Final_Project/asymmetric_slabs/LOGTRAJ.py``` 
-   
-5. Generate Pourbaix Diagram -
-   
-      a. Modify the Pourbaix Script to use your own FACET: ```nano ~/scripts_Final_Project/asymmetric_slabs/Pourbaix/Pourbaix_Electrochemical.py```
-   
-      b. Run the script: ```python ~/scripts_Final_Project/asymmetric_slabs/Pourbaix/Pourbaix_Electrochemical.py```
-
-      c. Now a pourbaix diagram was generated and saved in ```/anvil/projects/x-eve210010/scripts/scripts_Final_Project/asymmetric_slabs/Pourbaix/Pourbaix_Diagrams/full_diagrams/pH=1``` and the legend is coped into this folder for better viewing ```/anvil/projects/x-eve210010/scripts/scripts_Final_Project/asymmetric_slabs/Pourbaix/Pourbaix_Diagrams/Legend```
-
-      d. We can pull the most stable configurations of the surface: ```python /anvil/projects/x-eve210010/scripts/scripts_Final_Project/asymmetric_slabs/Pourbaix/pull_most_stable.py YOUR_FACET```
-
-   
-6. Map adsorbates to the symmetric facet
-
-   a. Make a ```sym_surf``` directory: ``` mkdir -p /anvil/scratch/YOUR_USERNAME/Final_Project_2024/dopedSurface/ruo2/sym_surf/ ```
+   a. Make a new directories with different components. 1. bare_MXene, 2. adsorbate (3. Cl for Cl-terminated system) inside the folder where the relaxed structure is located. Copy your scf.out into all of the new directories.
     
-   b. Copy clean symmetric surfaces for both facets into your own directory structure: ```cp -r /anvil/projects/x-eve210010/REFERENCES/dopedSurface/ruo2/sym_surf/YOUR_FACET /anvil/scratch/YOUR_USERNAME/Final_Project_2024/dopedSurface/ruo2/sym_surf/ ```
+   b. Open scf.out in all the directories and erase everything in the scf.out file except the part that is the name of the directory: for example, for adsorbate directory, erase all the atoms in the system except the ligand part.
 
-   c. Copy this folder to your scripts:
+   c. After erasing them, run a scf calculation using the scf.py.
 
          1. mv ~/scripts_Final_Project/symmetric_slabs ~/scripts_Final_Project/symmetric_slabs_old
    
