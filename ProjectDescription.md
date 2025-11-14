@@ -123,7 +123,7 @@ Individual Task
         ads.rotate(90, v, reference_position_ads) <- Modify here
       ```
       Try different angles(0, 30, 60) to have the ligand lying as close as possible to the surface without it colliding with the periodic counterpart. Make sure to record the angle you   have changed to.
-   b. Adsorb the second ligands straight in the bottom layer in the same way. Instead of fcc, hcp, and top, utilze fcc-, hcp-, top-. You also need to pick the indexes of the surface atoms opposite for fcc and top, but same for hcp. However, you need to input fcc-, hcp- and top- for the positions. 
+   b. Adsorb the second ligands straight in the bottom layer in the same way. Instead of fcc, hcp, and top, utilze fcc-, hcp-, top-. You also need to pick the indexes of the surface atoms opposite for fcc and top, but same for hcp. However, you need to input fcc-, hcp- and top- for the positions. Keep in mind that you will need to change the file that you are reading to "init.traj" in the adsorbate.py, so that you are adsorbing to the newly generated file with the one adsorbate already adsorbed.
    c. Calculate the adsorption energies of each configuration to figure out the most optimal structure. The analysis from here on will be only done in the most optimal structure.
 
 4. Run a DOS calculation on the relaxed structures, same as you did for homework 5.
