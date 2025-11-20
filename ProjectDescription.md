@@ -98,9 +98,9 @@ Individual Task
     wget https://upenncbe544.github.io/CBE544-2025/fp_carboxylic_acid.tar.gz
     tar -xzvf (filename).tar.gz
     ```
-    Distribute the ligands among team members, each member should have 2 ligands. After downloading the ligands, remove one hydrogen from them, for cycloalkane hydrogen from any carbon, for cycloalkene, a hydrogen from carbon that contains a double bond, for carboxylic acid, remove from the -COOH to create -COO, and lastly for amine, remove from -NH2 to create -NH, or amido radical.
+    Distribute the ligands among team members, each member should have 2 ligands. After downloading the ligands, remove one hydrogen from them, for cycloalkane hydrogen from any carbon, for cycloalkene, a hydrogen from carbon that contains a double bond, for carboxylic acid, remove from the -COOH to create -COO, and lastly for amine, remove from -NH<sub>2</sub> to create -NH, or amido radical.
    
-3. Adsorb and relax the structure on the 'bare' surface in 2 configuration where either it is tilted or standing up in two directions.(You don't need to run calculations for single layer adsorption) 
+3. Adsorb and relax the structure on the 'bare' surface in 2 configuration where either it is tilted or standing up in two directions.(You don't need to run calculations for single layer adsorption, please only relax the double layer adsorption) 
     a. Adsorb the first ligands straight and tilted using the adsorbate.py.
     Ex)
     <img width="968" src="docs/image2.png">
